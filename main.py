@@ -1,7 +1,8 @@
-from flask import Flask, request, render_template, flash
+from flask import Flask, request, render_template
+
 
 app = Flask(__name__)
-app.secret_key = 'yghnsd%^&%^^(*(yfgyr9'
+
 @app.route('/home/', methods=['GET', 'POST'])
 def check_temperature():
     message = ""
@@ -9,7 +10,7 @@ def check_temperature():
         try:
             temperature = float(request.form.get('temperature'))
             if temperature <= 0:
-                flash("A cold, isn’t it?", "warning")
+                message = "A cold, isn’t it?"
             elif 0 < temperature < 10:
                 message = "Cool."
             else:
